@@ -1,5 +1,7 @@
 package com.hardis.google.hashcode.videos;
 
+import com.hardis.google.hashcode.videos.model.Datas;
+import com.hardis.google.hashcode.videos.utils.ImportDatasUtils;
 import org.apache.log4j.Logger;
 
 
@@ -12,6 +14,8 @@ public class App {
 
     public static void main(String[] args) {
         LOGGER.info("Lancement du programme.");
+
+        Datas datas = ImportDatasUtils.importDatas("example.in");
     }
 
 }
