@@ -3,6 +3,7 @@ package com.hardis.google.hashcode.videos;
 import com.hardis.google.hashcode.videos.model.CoupleCacheServerVideo;
 import com.hardis.google.hashcode.videos.model.Datas;
 import com.hardis.google.hashcode.videos.utils.CreateCouplesUtils;
+import com.hardis.google.hashcode.videos.utils.DistributeVideosUtils;
 import com.hardis.google.hashcode.videos.utils.ExportDatasUtils;
 import com.hardis.google.hashcode.videos.utils.ImportDatasUtils;
 import org.apache.log4j.Logger;
@@ -22,7 +23,7 @@ public class App {
     public static void main(String[] args) {
         LOGGER.info("Lancement du programme.");
 
-        String filename = "example";
+        String filename = "kittens";
         Datas datas = ImportDatasUtils.importDatas(filename + ".in");
         List<CoupleCacheServerVideo> couples = CreateCouplesUtils.createCouples(datas);
 
@@ -34,7 +35,8 @@ public class App {
             }
         });
 
-        Boolean exitStatus = ExportDatasUtils.exportsDatas(filename + "out", datas);
+        datas = DistributeVideosUtils.distributeVideos(datas, couples);
+        Boolean exitStatus = ExportDatasUtils.exportsDatas(filename + ".out", datas);
 
         if(exitStatus) {
             LOGGER.info("Fin du programme, le fichier output a été généré avec succès.");

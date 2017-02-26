@@ -60,20 +60,23 @@ public class ImportDatasUtils {
                     if(isEndpointHeader) {
                         Endpoint endpoint = new Endpoint(countEndpointsBloc, Integer.parseInt(values[0]));
                         datas.addEndpoint(endpoint);
-                        datas.getCacheServers().get(0).addEndpoint(endpoint);
                         countEndpointsLine = Integer.parseInt(values[1]);
 
                         if(countEndpointsLine != 0) {
                             isEndpointHeader = Boolean.FALSE;
                         } else if(countEndpointsBloc == datas.getNbEndpoints() -1) {
                             isThirdBloc = Boolean.FALSE;
+                        } else {
+                            countEndpointsBloc++;
                         }
                     } else {
                         datas.getEndpoints().get(countEndpointsBloc).getLatencyToCacheServer()
                                 .put(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
+                        datas.getCacheServers().get(Integer.parseInt(values[0]))
+                                .addEndpoint(datas.getEndpoints().get(countEndpointsBloc));
                         countEndpointsLine--;
 
-                        if(countEndpointsLine == 0 && countEndpointsBloc < datas.getNbEndpoints()) {
+                        if(countEndpointsLine == 0 && countEndpointsBloc < datas.getNbEndpoints() -1) {
                             countEndpointsBloc++;
                             isEndpointHeader = Boolean.TRUE;
                         } else if(countEndpointsLine == 0) {
