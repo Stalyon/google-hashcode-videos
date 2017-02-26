@@ -19,11 +19,11 @@ public class ExportDatasUtils {
         throw new IllegalAccessError("Utility class");
     }
 
-    public static Boolean exportsDatas(String filename, Datas datas) {
+    public static Boolean exportsDatas(String filename, String exportPath, Datas datas) {
         LOGGER.info("Export des datas.");
 
         try {
-            File file = new File("/Users/pierrestainton/Documents/Java/google-hashcode-videos/" + filename);
+            File file = new File(exportPath + filename);
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
 
             writer.write(datas.getNbCacheServers() + "\n");

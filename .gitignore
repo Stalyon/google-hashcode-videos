@@ -136,3 +136,9 @@ Desktop.ini
 # ESLint
 ######################
 .eslintcache
+
+######################
+# Project
+######################
+google-hashcode-videos.zip
+*.out
