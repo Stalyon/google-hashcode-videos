@@ -1,7 +1,9 @@
 package com.hardis.google.hashcode.videos.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Endpoint entity
@@ -11,14 +13,18 @@ import java.util.List;
 public class Endpoint {
 
     private int id;
+    private int latency;
     private List<CacheServer> cacheServers;
     private List<Request> requests;
+    private Map<Integer, Integer> latencyToCacheServer;
 
 
-    public Endpoint(int id) {
+    public Endpoint(int id, int latency) {
         this.id = id;
+        this.latency = latency;
         this.cacheServers = new ArrayList<CacheServer>();
         this.requests = new ArrayList<Request>();
+        this.latencyToCacheServer = new HashMap<Integer, Integer>();
     }
 
 
@@ -28,6 +34,14 @@ public class Endpoint {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getLatency() {
+        return latency;
+    }
+
+    public void setLatency(int latency) {
+        this.latency = latency;
     }
 
     public List<CacheServer> getCacheServers() {
@@ -52,6 +66,18 @@ public class Endpoint {
 
     public void addRequest(Request request) {
         this.requests.add(request);
+    }
+
+    public Map<Integer, Integer> getLatencyToCacheServer() {
+        return latencyToCacheServer;
+    }
+
+    public void setLatencyToCacheServer(Map<Integer, Integer> latencyToCacheServer) {
+        this.latencyToCacheServer = latencyToCacheServer;
+    }
+
+    public void putLantencyToCacheServer(Integer latency, Integer cacheServerId) {
+        this.latencyToCacheServer.put(latency, cacheServerId);
     }
 
 }

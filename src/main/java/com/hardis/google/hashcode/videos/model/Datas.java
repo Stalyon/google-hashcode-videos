@@ -20,11 +20,7 @@ public class Datas {
     List<Video> videos;
 
 
-    public Datas(int nbVideos, int nbEndpoints, int nbRequestDescriptions, int nbCacheServers) {
-        this.nbVideos = nbVideos;
-        this.nbEndpoints = nbEndpoints;
-        this.nbRequestDescriptions = nbRequestDescriptions;
-        this.nbCacheServers = nbCacheServers;
+    public Datas() {
         this.cacheServers = new ArrayList<CacheServer>();
         this.endpoints = new ArrayList<Endpoint>();
         this.videos = new ArrayList<Video>();
