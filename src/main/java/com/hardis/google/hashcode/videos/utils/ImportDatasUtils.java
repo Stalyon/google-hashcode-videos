@@ -58,7 +58,9 @@ public class ImportDatasUtils {
                     String values[] = line.split(" ");
 
                     if(isEndpointHeader) {
-                        datas.addEndpoint(new Endpoint(countEndpointsBloc, Integer.parseInt(values[0])));
+                        Endpoint endpoint = new Endpoint(countEndpointsBloc, Integer.parseInt(values[0]));
+                        datas.addEndpoint(endpoint);
+                        datas.getCacheServers().get(0).addEndpoint(endpoint);
                         countEndpointsLine = Integer.parseInt(values[1]);
 
                         if(countEndpointsLine != 0) {
@@ -82,11 +84,11 @@ public class ImportDatasUtils {
                     String values[] = line.split(" ");
 
                     datas.getEndpoints().get(Integer.parseInt(values[1]))
-                            .addRequest(new Request(Integer.parseInt(values[2]),
-                                    datas.getVideos().get(Integer.parseInt(values[0]))));
+                            .putRequestToVideo(Integer.parseInt(values[2]), Integer.parseInt(values[0]));
                 }
             }
             LOGGER.info("Fin de l'import des datas.");
+            return datas;
         } catch (FileNotFoundException e) {
             LOGGER.error(e);
         } catch (IOException e) {

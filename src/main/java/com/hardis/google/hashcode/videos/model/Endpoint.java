@@ -15,7 +15,7 @@ public class Endpoint {
     private int id;
     private int latency;
     private List<CacheServer> cacheServers;
-    private List<Request> requests;
+    private Map<Integer, Integer> requestsToVideo;
     private Map<Integer, Integer> latencyToCacheServer;
 
 
@@ -23,7 +23,7 @@ public class Endpoint {
         this.id = id;
         this.latency = latency;
         this.cacheServers = new ArrayList<CacheServer>();
-        this.requests = new ArrayList<Request>();
+        this.requestsToVideo = new HashMap<Integer, Integer>();
         this.latencyToCacheServer = new HashMap<Integer, Integer>();
     }
 
@@ -56,18 +56,6 @@ public class Endpoint {
         this.cacheServers.add(cacheServer);
     }
 
-    public List<Request> getRequests() {
-        return requests;
-    }
-
-    public void setRequests(List<Request> requests) {
-        this.requests = requests;
-    }
-
-    public void addRequest(Request request) {
-        this.requests.add(request);
-    }
-
     public Map<Integer, Integer> getLatencyToCacheServer() {
         return latencyToCacheServer;
     }
@@ -77,7 +65,19 @@ public class Endpoint {
     }
 
     public void putLantencyToCacheServer(Integer latency, Integer cacheServerId) {
-        this.latencyToCacheServer.put(latency, cacheServerId);
+        this.latencyToCacheServer.put(cacheServerId, latency);
+    }
+
+    public Map<Integer, Integer> getRequestsToVideo() {
+        return requestsToVideo;
+    }
+
+    public void setRequestsToVideo(Map<Integer, Integer> requestsToVideo) {
+        this.requestsToVideo = requestsToVideo;
+    }
+
+    public void putRequestToVideo(Integer nbRequests, Integer videoId) {
+        this.requestsToVideo.put(videoId, nbRequests);
     }
 
 }
