@@ -3,7 +3,6 @@ package com.hardis.google.hashcode.videos;
 import com.hardis.google.hashcode.videos.utils.*;
 import org.apache.log4j.Logger;
 
-
 /**
  * Created by pierrestainton on 25/02/2017.
  */

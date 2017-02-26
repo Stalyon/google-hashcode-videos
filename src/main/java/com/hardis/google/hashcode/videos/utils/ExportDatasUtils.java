@@ -6,7 +6,6 @@ import com.hardis.google.hashcode.videos.model.Video;
 import org.apache.log4j.Logger;
 
 import java.io.*;
-import java.util.List;
 
 /**
  * Created by pierrestainton on 26/02/2017.
